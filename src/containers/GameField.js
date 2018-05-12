@@ -3,32 +3,39 @@ import { connect } from 'react-redux'
 import { NewGameButton } from '../components/NewGameButton'
 import { SubmitGuess } from '../components/SubmitGuess'
 import { showGuess, wrongGuessCount, isWinner, wrongGuessLimit, gameFinished } from '../lib/game'
+import {images} from '../data/images'
+import './gamefield.css'
 
 
 export class GameField extends Component {
   render() {
     const { word, guess } = this.props
+    console.log(images)
     if (gameFinished(word, guess) && guess.length) {
       return (
-        <div>
+        <div className='gamefield'>
           {isWinner(word, guess) &&
             <h1>
               WINNER
             </h1>
           }
           {wrongGuessLimit(word, guess) &&
-            <h1>
-              LOSER
-            </h1>
+            <div>
+              <img src={images[5]} alt='hangman'/>
+              <h1>
+                LOSER
+              </h1>
+            </div>
           }
           <NewGameButton />
         </div>
       )
     } else {
       return (
-        <div>
+        <div className='gamefield'>
           {word &&
             <div>
+              {wrongGuessCount(word, guess) > 0 && <img src={images[wrongGuessCount(word, guess) - 1]} alt='hangman'/>}
               <h1>
                 {showGuess(word, guess)}
               </h1>
