@@ -10,7 +10,6 @@ import './gamefield.css'
 export class GameField extends Component {
   render() {
     const { word, guess } = this.props
-    console.log(images)
     if (gameFinished(word, guess) && guess.length) {
       return (
         <div className='gamefield'>
@@ -43,6 +42,8 @@ export class GameField extends Component {
               <h2>
                 {wrongGuessCount(word, guess)}
               </h2>
+              <h3>Enter the letter you want to guess, you can only enter letters.</h3>
+              <h3>If you guess incorrectly 6 times, you hang.</h3>
             </div>
           }
           <NewGameButton />

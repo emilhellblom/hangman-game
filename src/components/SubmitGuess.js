@@ -22,7 +22,7 @@ class Submit extends Component {
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
-          Enter guess: <input onChange={ e => this.handleChange(e) } value={ value } type="text" maxLength='1'/>
+          <input onChange={ e => this.handleChange(e) } value={ value } type='text' maxLength='1' pattern='[A-Za-z]'/>
           <input type="submit"/>
         </form>
       </div>
